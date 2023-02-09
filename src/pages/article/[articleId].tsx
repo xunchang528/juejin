@@ -1,9 +1,9 @@
-import { LOCALDOMAIN } from "../../utils";
+import { LOCALDOMAIN, CMSDOMAIN } from "../../utils";
 import axios from "axios";
 import React from "react";
 import type { GetServerSideProps, NextPage } from "next";
 import styles from "./styles.module.scss";
-import AuthorViewIcon from "./AuthorViewIcon.svg";
+import { Interface } from "readline";
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const showdown = require("showdown");
 
@@ -11,9 +11,26 @@ export interface IArticleProps {
   title: string;
   authorName: string;
   authorDesc: string;
-  authorImg: string;
+  authorImg: {
+    data: {
+      attributes: {
+        url: string;
+      };
+    };
+  };
   content: string;
   view: string;
+  adUrl: {
+    attributes: {
+      AdImg: {
+        data: {
+          attributes: {
+            url: string;
+          }
+        }       
+      }
+    };
+  }[];
 }
 
 const Article: NextPage<IArticleProps> = ({
@@ -23,6 +40,7 @@ const Article: NextPage<IArticleProps> = ({
   authorImg,
   content,
   view,
+  adUrl,
 }) => {
   const converter = new showdown.Converter();
   return (
@@ -33,7 +51,10 @@ const Article: NextPage<IArticleProps> = ({
         {/* 作者信息 */}
         <div className={styles.info}>
           <a href="#">
-            <div className={styles.authorImg}></div>
+            <img
+              src={CMSDOMAIN + authorImg.data.attributes.url}
+              className={styles.authorImg}
+            ></img>
           </a>
           <div className={styles.infoBox}>
             <div className={styles.authorName}>
@@ -49,6 +70,9 @@ const Article: NextPage<IArticleProps> = ({
               <span> ·  阅读{view}</span>
             </div>
           </div>
+          <button className={styles.followBtn}>
+            <span>+关注</span>
+          </button>
         </div>
         {/* 文章内容 */}
         <div
@@ -65,7 +89,10 @@ const Article: NextPage<IArticleProps> = ({
           {/* 作者信息 */}
           <div className={styles.info}>
             <a>
-              <div className={styles.authorImg}></div>
+              <img
+                src={CMSDOMAIN + authorImg.data.attributes.url}
+                className={styles.authorImg}
+              ></img>
             </a>
             <div className={styles.infoBox}>
               <div className={styles.authorName}>
@@ -77,7 +104,7 @@ const Article: NextPage<IArticleProps> = ({
                 </a>
               </div>
               <a className={styles.signature}>
-                <div>个性签名</div>
+                <div>{authorDesc}</div>
               </a>
             </div>
           </div>
@@ -166,18 +193,14 @@ const Article: NextPage<IArticleProps> = ({
           </div>
         </div>
         {/* 广告 */}
-        <a>
-          <img
-            className={styles.adFirst}
-            src="http://localhost:1337/uploads/AD_2_4d119d0c17.png?updated_at=2023-02-05T05:16:29.321Z"
-          ></img>
-        </a>
-        <a>
-          <img
-            className={styles.adSecond}
-            src="http://localhost:1337/uploads/AD_1_f4cfbe055a.png?updated_at=2023-02-05T05:16:29.421Z"
-          ></img>
-        </a>
+        {adUrl?.map((item) => (
+          <a>
+            <img
+              className={styles.adFirst}
+              src={CMSDOMAIN + item.attributes.AdImg.data.attributes.url}
+            ></img>
+          </a>
+        ))}
         {/* 相关文章 */}
         <div className={styles.relateArticle}>
           <div className={styles.relateTitle}>相关文章</div>
@@ -195,13 +218,25 @@ const Article: NextPage<IArticleProps> = ({
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { articleId } = context.query;
-  const { data } = await axios.get(`${LOCALDOMAIN}/api/articleInfo`, {
-    params: {
-      articleId,
-    },
-  });
+  const { data: articleData } = await axios.get(
+    `${LOCALDOMAIN}/api/articleInfo`,
+    {
+      params: {
+        articleId,
+      },
+    }
+  );
+  const { data: adData } = await axios.get(`${LOCALDOMAIN}/api/advertise`);
   return {
-    props: data, // 需要拿props包裹
+    props: {
+      title: articleData.title,
+      authorName: articleData.authorName,
+      authorDesc: articleData.authorDesc,
+      authorImg: articleData.authorImg,
+      content: articleData.content,
+      view: articleData.view,
+      adUrl: adData,
+    }, // 需要拿props包裹
   };
 };
 
