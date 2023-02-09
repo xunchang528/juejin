@@ -3,6 +3,7 @@
 .container {
   display: flex;
   box-sizing: border-box;
+  margin-top: 20px;
   .article {
     background-color: var(--juejin-layer-5);
     border-radius: 4px 4px 0 0;
@@ -33,7 +34,6 @@
       width: 3.333rem;
       height: 3.333rem;
       border-radius: 50%;
-      background-color: #000;
     }
     .infoBox {
     }
@@ -47,6 +47,21 @@
       font-weight: 500;
       color: var(--juejin-font-2);
       line-height: 2rem;
+    }
+    .followBtn {
+      margin: 0 0 0 auto;
+      padding: 0 1rem;
+      height: 34px;
+      font-size: 14px;
+      color: var(--juejin-font-brand1-normal);
+      background: var(--juejin-brand-fill1-normal);
+      border: 1px solid rgba(30, 128, 255, 0.3);
+      border-radius: 4px;
+      display: none;
+      align-items: center;
+    }
+    .followBtn:hover {
+      background-color: var(--juejin-brand-fill2-hover);
     }
     .editDate {
       font-size: 1.167rem;
@@ -95,7 +110,6 @@
       width: 3.333rem;
       height: 3.333rem;
       border-radius: 50%;
-      background-color: #000;
     }
     .infoBox {
     }
@@ -164,16 +178,9 @@
     }
     .adFirst {
       width: 100%;
-      height: 100px;
       margin-bottom: 20px;
       display: inline-block;
-    }
-
-    .adSecond {
-      width: 100%;
-      height: 300px;
-      margin-bottom: 20px;
-      display: inline-block;
+      border-radius: 4px;
     }
 
     .relateArticle {
@@ -222,3 +229,22 @@
     }
   }
 }
+
+@media screen and (max-width: 1200px) {
+  .container{
+    .article {
+      margin: 0 0 auto 0;
+      width: 100%;
+      .followBtn {
+        display: flex;
+      }
+    }
+
+    .sideBar {
+      width: 0;
+      display: none;
+    }
+  }
+}
+
+
