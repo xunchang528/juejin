@@ -1,5 +1,5 @@
 //定义主题色
-@import "~@douyinfe/semi-ui/dist/css/semi.min.css";
+// @import "~@douyinfe/semi-ui/dist/css/semi.min.css";
 
 html[data-theme="dark"] {
   
@@ -109,11 +109,16 @@ body {
   color: var(--juejin-font-1);
   background-color: var(--juejin-background);
   overflow: hidden;
+  list-style: none;
 }
 
 a {
   color: inherit;
   text-decoration: none;
+}
+
+li {
+  list-style: none;
 }
 
 * {
@@ -129,3 +134,4 @@ a {
   height: 100vh;
   overflow: auto;
 }
+

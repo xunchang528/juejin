@@ -41,6 +41,4 @@ const MyApp = (data: AppProps & IComponentProps): JSX.Element => {
   );
 };
 
-
-
 export default MyApp;
