@@ -1,4 +1,10 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, {
+  useContext,
+  useEffect,
+  useReducer,
+  useRef,
+  useState,
+} from "react";
 import type { GetServerSideProps, GetStaticProps, NextPage } from "next";
 import styles from "./index.module.scss";
 import axios from "axios";
@@ -8,12 +14,14 @@ import App from "next/app";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-interface IProps {
+export interface IProps {
   title: string;
   description: string;
   authorName: string;
   date: string;
   tag: string;
+  tabData: object;
+  contentTabData: object;
 }
 
 const Home: NextPage<IProps> = ({
@@ -22,6 +30,8 @@ const Home: NextPage<IProps> = ({
   authorName,
   date,
   tag,
+  tabData,
+  contentTabData,
 }) => {
   const items = [1, 2, 3, 4, 5];
   var result = [];
@@ -80,32 +90,34 @@ const Home: NextPage<IProps> = ({
   }
 
   return (
-    <div className={styles.container}>
-      <div className={styles.content}>
-        <div className={styles.entry_list}>
-          <div className={styles.entry_list_container}>
-            <header className={styles.list_header}>
-              <nav className={styles.list_nav}>
-                <ul className={styles.nav_list}>
-                  <li className={styles.nav_item}>推荐</li>
-                  <li className={styles.nav_item}>最新</li>
-                  <li className={styles.nav_item}>热榜</li>
-                </ul>
-                <div className={styles.dorp_down_area}></div>
-              </nav>
-            </header>
-            {result}
+    <>
+      <div className={styles.container}>
+        <div className={styles.content}>
+          <div className={styles.entry_list}>
+            <div className={styles.entry_list_container}>
+              <header className={styles.list_header}>
+                <nav className={styles.list_nav}>
+                  <ul className={styles.nav_list}>
+                    <li className={styles.nav_item}>推荐</li>
+                    <li className={styles.nav_item}>最新</li>
+                    <li className={styles.nav_item}>热榜</li>
+                  </ul>
+                  <div className={styles.dorp_down_area}></div>
+                </nav>
+              </header>
+              {result}
+            </div>
           </div>
+          {/* 主页侧边广告栏 */}
+          <aside className={styles.aside}>
+            <div className={styles.sidebar_block}>
+              <div className={styles.banner}>ad</div>
+            </div>
+            <div></div>
+          </aside>
         </div>
-        {/* 主页侧边广告栏 */}
-        <aside className={styles.aside}>
-          <div className={styles.sidebar_block}>
-            <div className={styles.banner}>ad</div>
-          </div>
-          <div></div>
-        </aside>
       </div>
-    </div>
+    </>
   );
 };
 
@@ -137,3 +149,24 @@ const Home: NextPage<IProps> = ({
 // };
 
 export default Home;
+
+// nav栏数据
+export async function getStaticProps() {
+  // 抓取数据
+  //Tab数据
+  const navResponse = await fetch(`${process.env.DB_PATH}/tabs`);
+  const navData = await navResponse.json();
+  console.log(navData);
+
+  //bigtag数据
+  const contentNavResponse = await fetch(`${process.env.DB_PATH}/big-tags`);
+  const contentNavData = await contentNavResponse.json();
+
+  return {
+    props: {
+      // 传出数据
+      tabData: navData,
+      contentTabData: contentNavData,
+    },
+  };
+}
