@@ -13,6 +13,9 @@ import { IArticleIntro } from "./api/articleIntro";
 import App from "next/app";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import Ads from "../components/Ads";
+import Authors from "../components/Authors";
+import Articles from "../components/Articles";
 
 export interface IProps {
   title: string;
@@ -22,6 +25,9 @@ export interface IProps {
   tag: string;
   tabData: object;
   contentTabData: object;
+  adData: String;
+  authorData: String;
+  articleData: String;
 }
 
 const Home: NextPage<IProps> = ({
@@ -32,6 +38,9 @@ const Home: NextPage<IProps> = ({
   tag,
   tabData,
   contentTabData,
+  adData,
+  authorData,
+  articleData
 }) => {
   const items = [1, 2, 3, 4, 5];
   var result = [];
@@ -106,6 +115,8 @@ const Home: NextPage<IProps> = ({
                 </nav>
               </header>
               {result}
+              {/* 文章列表 */}
+              <Articles articleData={articleData}/>
             </div>
           </div>
           {/* 主页侧边广告栏 */}
@@ -113,40 +124,18 @@ const Home: NextPage<IProps> = ({
             <div className={styles.sidebar_block}>
               <div className={styles.banner}>ad</div>
             </div>
-            <div></div>
+            <div>
+              {/* 广告位 */}
+              <Ads adData={adData}/>
+              {/* 作者榜 */}
+              <Authors authorData={authorData}/>
+            </div>
           </aside>
         </div>
       </div>
     </>
   );
 };
-
-// Home.getInitialProps = async (context) => {
-//   const { data: homeData } = await axios.get(`${LOCALDOMAIN}/api/article`);
-//   const { data: articleData } = await axios.post(
-//     `${LOCALDOMAIN}/api/articleIntro`,
-//     {
-//       pageNo: 1,
-//       pageSize: 6,
-//     }
-//   );
-
-//   return {
-//     title: homeData.title,
-//     description: homeData.description,
-//     authorName: homeData.authorName,
-//     date: homeData.date,
-//     tag: homeData.tag,
-//     articles: {
-//       list: articleData.list.map((item: IArticleIntro) => {
-//         return {
-//           link: `${LOCALDOMAIN}/article/${item.articleId}`,
-//         };
-//       }),
-//       total: articleData.total,
-//     },
-//   };
-// };
 
 export default Home;
 
@@ -162,11 +151,26 @@ export async function getStaticProps() {
   const contentNavResponse = await fetch(`${process.env.DB_PATH}/big-tags`);
   const contentNavData = await contentNavResponse.json();
 
+  //AD数据
+  const adResponse = await fetch(`${process.env.DB_PATH}/ads?populate=*`)
+  const adData = await adResponse.json();
+  
+  //author数据
+  const authorResponse = await fetch(`${process.env.DB_PATH}/authors?populate=*`)
+  const authorData = await authorResponse.json();
+
+  //article数据
+  const articleResponse = await fetch(`${process.env.DB_PATH}/articles?populate=*`)
+  const articleData = await articleResponse.json();
+
   return {
     props: {
-      // 传出数据
+      // index页面传出数据
       tabData: navData,
       contentTabData: contentNavData,
+      adData,
+      authorData,
+      articleData
     },
   };
 }
