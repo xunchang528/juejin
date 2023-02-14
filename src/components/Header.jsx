@@ -1,10 +1,8 @@
 import { Container } from "./Container"
 import Link from "next/link"
-import { useState } from "react"
+import { useEffect, useState,useReducer } from "react"
 import { NavLink } from "./NavLink"
 import Image from "next/image"
-// import member from '@/images/svg/member'
-// import search from '@/images/svg/Search'
 import {DesktopLogo,MobileLogo,SearchIcon,MemberIcon }from "./logo"
 import {MyDrop,MobileDrop} from "./Menu"
 import ContentNav from "./Page_nav"
@@ -12,11 +10,27 @@ import NavData from "./NavData"
 
 
 function Header({className,tabData}){
+  const [headerTop,setHeaderTop]=useState('top-0')
+  
 
+  // console.log(window.scrollY)
+  useEffect(() => {
+    window.addEventListener('wheel',(event)=>{
+      event.preventDefault
+      // console.log('first')
+      console.log(window.scrollY)    
+      // if(window.scrollY>'120px'){
+      //   setHeaderTop('-top-16')
+      // }
+    })
+  
+    
+  }, [headerTop])
+  
 
   return(
     <div className="relative h-16">
-     <header className={`fixed inset-0 h-16 w-screen bg-white z-50 text-gray-400 border-b border-b-slate-100  tablet:h-14 transition-all `}>
+     <header id="juejin_header" className={`fixed inset-0 ${headerTop} h-16 w-screen bg-white z-50 text-gray-400 border-b border-b-slate-100  tablet:h-14 transition-all -translate-y-0 `}>
       <Container className='max-w-10xl tablet:ml-3 laptop:w-11/12'>   
             {/*Logo  */}
          <Link href='#' aria-label="Home" className="mr-4 ml-6 inline-block h-5 w-auto laptop:ml-0 tablet:mr-0">

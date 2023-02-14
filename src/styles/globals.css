@@ -92,9 +92,12 @@ html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
+  /* 挤压问题 */
+  margin-right: calc(100%-100vw);
 }
 
 body {
+
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
       to bottom,
@@ -228,6 +231,8 @@ body {
   background-color: var(--juejin-background);
   overflow: hidden;
   list-style: none;
+
+  
 }
 
 a {
@@ -259,3 +264,9 @@ li {
   transform: scale(.5);
   /* *content: '\ed8d'; */
 }
+
+#juejin_header , #content_nav{
+  width: calc(100% - 17px);
+
+}
+

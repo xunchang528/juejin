@@ -13,6 +13,7 @@ import { IArticleIntro } from "./api/articleIntro";
 import App from "next/app";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import ContentNav from "../components/Page_nav";
 
 export interface IProps {
   title: string;
@@ -89,8 +90,12 @@ const Home: NextPage<IProps> = ({
     );
   }
 
+
   return (
     <>
+  <ContentNav contentTabData={contentTabData} />
+
+    
       <div className={styles.container}>
         <div className={styles.content}>
           <div className={styles.entry_list}>
@@ -151,7 +156,7 @@ const Home: NextPage<IProps> = ({
 export default Home;
 
 // nav栏数据
-export async function getStaticProps() {
+export async function getServerSideProps() {
   // 抓取数据
   //Tab数据
   const navResponse = await fetch(`${process.env.DB_PATH}/tabs`);

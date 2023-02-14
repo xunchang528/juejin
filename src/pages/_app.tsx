@@ -29,9 +29,11 @@ const MyApp = (data: AppProps & IComponentProps): JSX.Element => {
         <meta name="viewport" content="initial-scale=1,maximum-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <ThemeContextProvider>
-        <Header tabData={pageProps.tabData} />
-        <ContentNav contentTabData={pageProps.contentTabData} />
+      <div >
+        <Header tabData={pageProps.tabData} />     
+
+      <ThemeContextProvider>    
+
         <main>
           <Component
             {...pageProps}
@@ -39,7 +41,9 @@ const MyApp = (data: AppProps & IComponentProps): JSX.Element => {
             isSupportWebp={isSupportWebp}
           />
         </main>
-      </ThemeContextProvider>
+      </ThemeContextProvider>    
+      </div>
+    
     </div>
   );
 };

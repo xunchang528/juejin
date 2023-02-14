@@ -4,6 +4,7 @@ import React from "react";
 import type { GetServerSideProps, NextPage } from "next";
 import styles from "./styles.module.scss";
 import { Interface } from "readline";
+
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const showdown = require("showdown");
 
@@ -227,6 +228,15 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     }
   );
   const { data: adData } = await axios.get(`${LOCALDOMAIN}/api/advertise`);
+
+    // header数据
+    const navResponse = await fetch(`${process.env.DB_PATH}/tabs`);
+  const navData = await navResponse.json();
+  console.log(navData);
+
+  //bigtag数据
+  const contentNavResponse = await fetch(`${process.env.DB_PATH}/big-tags`);
+  const contentNavData = await contentNavResponse.json();
   return {
     props: {
       title: articleData.title,
@@ -236,6 +246,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       content: articleData.content,
       view: articleData.view,
       adUrl: adData,
+      tabData: navData,
+      contentTabData: contentNavData,
     }, // 需要拿props包裹
   };
 };
