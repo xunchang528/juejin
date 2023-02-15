@@ -16,7 +16,6 @@ export async function getServerSideProps() {
   //Tab数据
   const navResponse = await fetch(`${process.env.DB_PATH}/tabs`);
   const navData = await navResponse.json();
-  console.log(navData);
 
   //bigtag数据
   const contentNavResponse = await fetch(`${process.env.DB_PATH}/big-tags`);
