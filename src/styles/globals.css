@@ -250,15 +250,16 @@ li {
 
 .forbidScroll {
   height: 100vh;
-  overflow: initial;
+  /* overflow: initial; */
 
-  /* overflow: hidden; */
+  overflow: hidden;
 }
 
 #__next {
   height: 100vh;
   /* 不能用hidden或者auto属性，不然会影响页面window.scroll事件无法触发，window.scrollY值无法使用的问题 */
   overflow: initial;
+
 }
 
 #active_text{

@@ -2,12 +2,33 @@ import { Container } from "./Container";
 import { NavLink } from "./NavLink";
 import Link from "next/link";
 import { getStaticProps } from "../pages";
+import { useState,useEffect } from "react";
 
 function ContentNav({contentTabData}) {
+    const [topNav,setTopNav]=useState('top-14')
+
+
+    useEffect(()=>{
+    const scroll = ()=>{
+      const {scrollY}=window
+    console.log('scrollY',scrollY)
+    if(scrollY >= "300"){
+      // console.log('first')
+      setTopNav('top-0')
+    }
+    else{
+      setTopNav('top-14')
+
+    }
+
+    }
+    window.addEventListener('scroll',scroll,{passove:true})
+    // return window.removeEventListener('scroll',scroll,{passove:true})
+  },[topNav])
   
   return ( 
     // 这里出现了bug，因为我的层级之前设太高导致我的menu组件显示不出来
-    <nav  id="content_nav" className="fixed left-0 top-14 z-40 shadow-sm  h-12 border-b transition-all  bg-white  ">
+    <nav  id="content_nav" className={`fixed left-0  z-40 shadow-sm  h-12 border-b transition-all duration-500  bg-white ${topNav}`}>
       <Container className=''>   
 
             <div className=" flex justify-between items-center relative  m-auto w-full  h-full leading-none order-first  md:w-auto md:overflow-x-auto md:overflow-y-hidden  max-w-max">

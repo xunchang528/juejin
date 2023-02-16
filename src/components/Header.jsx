@@ -19,41 +19,31 @@ function Header({className,tabData}){
   
   let isInitial = useRef(true)
 
-  // useEffect(() => {
-    
-  
-  //   function updateHeaderStyles() {
-  //     console.log(window.scrollY)
-  //   }
+  const [topNav,setTopNav]=useState('top-0')
 
-  //    function updateStyles() {
-  //     updateHeaderStyles()
-  //     isInitial.current = false
-  //   }
-
-  //   updateStyles()
-  //   window.addEventListener('wheel', updateStyles, { passive: true })
-  //   // window.addEventListener('resize', updateStyles)
-
-  //    return () => {
-  //     window.removeEventListener('wheel', updateStyles, { passive: true })
-  //     // window.removeEventListener('resize', updateStyles)
-  //   }
-  // }, []);
 
     useEffect(()=>{
     const scroll = ()=>{
       const {scrollY}=window
     console.log('scrollY',scrollY)
+    if(scrollY >= "300"){
+      // console.log('first')
+      setTopNav('-top-16')
+    }
+    else{
+      setTopNav('top-0')
+
+    }
+
     }
     window.addEventListener('scroll',scroll,{passove:true})
-    return window.removeEventListener('scroll',scroll,{passove:true})
-  },[])
+    // return window.removeEventListener('scroll',scroll,{passove:true})
+  },[topNav])
   
 
   return(
     <div className="relative h-16">
-     <header id="juejin_header" className={`fixed inset-0  h-16 w-screen bg-white z-50 text-gray-400 border-b border-b-slate-100  tablet:h-14 transition-all -translate-y-0 `} ref={headerRef}>
+     <header id="juejin_header" className={`fixed inset-0  h-16 w-screen bg-white z-50 text-gray-400 border-b border-b-slate-100  tablet:h-14 transition-all  duration-500  -translate-y-0 ${topNav}`} ref={headerRef}>
       <Container className='max-w-10xl tablet:ml-3 laptop:w-11/12'>   
             {/*Logo  */}
          <Link href='#' aria-label="Home" className="mr-4 ml-6 inline-block h-5 w-auto laptop:ml-0 tablet:mr-0">
