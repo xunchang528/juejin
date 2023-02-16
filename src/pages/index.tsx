@@ -13,6 +13,11 @@ import { IArticleIntro } from "./api/articleIntro";
 import App from "next/app";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import Ads from "../components/Ads";
+import Authors from "../components/Authors";
+import Articles from "../components/Articles";
+import ContentNav from "../components/Page_nav";
+
 
 export interface IProps {
   title: string;

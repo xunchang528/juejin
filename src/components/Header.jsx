@@ -19,27 +19,36 @@ function Header({className,tabData}){
   
   let isInitial = useRef(true)
 
-  useEffect(() => {
+  // useEffect(() => {
     
+  
+  //   function updateHeaderStyles() {
+  //     console.log(window.scrollY)
+  //   }
 
-    function updateHeaderStyles() {
-      console.log(window.scrollY)
+  //    function updateStyles() {
+  //     updateHeaderStyles()
+  //     isInitial.current = false
+  //   }
+
+  //   updateStyles()
+  //   window.addEventListener('wheel', updateStyles, { passive: true })
+  //   // window.addEventListener('resize', updateStyles)
+
+  //    return () => {
+  //     window.removeEventListener('wheel', updateStyles, { passive: true })
+  //     // window.removeEventListener('resize', updateStyles)
+  //   }
+  // }, []);
+
+    useEffect(()=>{
+    const scroll = ()=>{
+      const {scrollY}=window
+    console.log('scrollY',scrollY)
     }
-
-     function updateStyles() {
-      updateHeaderStyles()
-      isInitial.current = false
-    }
-
-    updateStyles()
-    window.addEventListener('wheel', updateStyles, { passive: true })
-    // window.addEventListener('resize', updateStyles)
-
-     return () => {
-      window.removeEventListener('wheel', updateStyles, { passive: true })
-      // window.removeEventListener('resize', updateStyles)
-    }
-  }, []);
+    window.addEventListener('scroll',scroll,{passove:true})
+    return window.removeEventListener('scroll',scroll,{passove:true})
+  },[])
   
 
   return(

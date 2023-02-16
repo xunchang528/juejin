@@ -229,7 +229,7 @@ body {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   color: var(--juejin-font-1);
   background-color: var(--juejin-background);
-  overflow: hidden;
+  overflow: initial;
   list-style: none;
 
   
@@ -250,12 +250,15 @@ li {
 
 .forbidScroll {
   height: 100vh;
-  overflow: hidden;
+  overflow: initial;
+
+  /* overflow: hidden; */
 }
 
 #__next {
   height: 100vh;
-  overflow: auto;
+  /* 不能用hidden或者auto属性，不然会影响页面window.scroll事件无法触发，window.scrollY值无法使用的问题 */
+  overflow: initial;
 }
 
 #active_text{
@@ -266,7 +269,7 @@ li {
 }
 
 #juejin_header , #content_nav{
-  width: calc(100% - 17px);
+  width: 100%
 
 }
 
