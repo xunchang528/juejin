@@ -8,15 +8,11 @@ import {MyDrop,MobileDrop} from "./Menu"
 import NavData from "./NavData"
 
 
-function clamp(number, a, b) {
-  let min = Math.min(a, b)
-  let max = Math.max(a, b)
-  return Math.min(Math.max(number, min), max)
-}
+
 
 function Header({className,tabData}){
-  let headerRef = useRef()
   
+  let headerRef = useRef()
   let isInitial = useRef(true)
 
   const [topNav,setTopNav]=useState('top-0')
@@ -25,8 +21,9 @@ function Header({className,tabData}){
     useEffect(()=>{
     const scroll = ()=>{
       const {scrollY}=window
-    console.log('scrollY',scrollY)
-    if(scrollY >= "300"){
+    // console.log('scrollY',scrollY)
+    
+      if(scrollY >= "180"){
       // console.log('first')
       setTopNav('-top-16')
     }
@@ -34,7 +31,7 @@ function Header({className,tabData}){
       setTopNav('top-0')
 
     }
-
+    
     }
     window.addEventListener('scroll',scroll,{passove:true})
     // return window.removeEventListener('scroll',scroll,{passove:true})

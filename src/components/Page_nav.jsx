@@ -3,8 +3,15 @@ import { NavLink } from "./NavLink";
 import Link from "next/link";
 import { getStaticProps } from "../pages";
 import { useState,useEffect } from "react";
+import { useRouter } from "next/router"
+
 
 function ContentNav({contentTabData}) {
+
+  // 判断路由是否存在
+  // let isHomepage = useRouter().pathname === '/'
+  // let isRouter = useRouter().pathname === '/events/all'
+
     const [topNav,setTopNav]=useState('top-14')
 
 
@@ -12,7 +19,7 @@ function ContentNav({contentTabData}) {
     const scroll = ()=>{
       const {scrollY}=window
     console.log('scrollY',scrollY)
-    if(scrollY >= "300"){
+    if(scrollY >= "180"){
       // console.log('first')
       setTopNav('top-0')
     }
