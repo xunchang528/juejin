@@ -1,17 +1,39 @@
 import { NavLink } from "./NavLink";
 import Link from "next/link";
-import { useState,useEffect } from "react";
+import { useState,useEffect,useRef } from "react";
 import { useRouter } from "next/router";
+import clsx from "clsx";
 
 
 
 
 const NavData=({tabData})=> {
+  // 兼容数量
+  const btn=useRef()
+
+  const [isOver,setIsOver]=useState(false)
+  const [show,setShow]=useState(false)
+
+  const [overData,setOverData]=useState('')
+  
+
+  useEffect(() => {
+    if(tabData.data.length > 10){
+      // console.log('first')
+      setIsOver(true)
+    }
+    
+  
+   
+  }, [isOver])
+
+  
 
  
 
   return ( 
-    <ul  className="flex laptop:hidden h-16 ">
+    <>
+    <ul  className={clsx(`w-144 flex flex-shrink-0 laptop:hidden h-16`, show?'':'overflow-hidden')}>
       {
         tabData.data.map((el)=>(
           el.attributes.info?(
@@ -31,7 +53,24 @@ const NavData=({tabData})=> {
 
         )
       }
+      
       </ul>
+
+
+     {
+      isOver?(
+        !show?(
+          <div ref={btn} onClick={()=>setShow(true) } className={`text-slate-500  inline-block h-16 my-0 mx-3 text-sm before:absolute  before:inset-0`}>更多</div>
+        ):(
+          <div ref={btn} onClick={()=>setShow(false) } className={`text-slate-500  inline-block h-16 my-0 mx-3 text-sm before:absolute  before:inset-0`}>收起</div>
+        )
+
+      ):(<></>)
+        
+      }
+    </>
+    
+     
    );
 }
 
