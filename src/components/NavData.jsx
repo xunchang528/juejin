@@ -13,8 +13,9 @@ const NavData=({tabData})=> {
 
   const [isOver,setIsOver]=useState(false)
   const [show,setShow]=useState(false)
-
   const [overData,setOverData]=useState('')
+  const [infoData,setInfoData]=useState(false)
+
   
 
   useEffect(() => {
@@ -33,17 +34,17 @@ const NavData=({tabData})=> {
 
   return ( 
     <>
-    <ul  className={clsx(`w-144 flex flex-shrink-0 laptop:hidden h-16`, show?'':'overflow-hidden')}>
+    <ul onClick={()=>setInfoData(true)} className={clsx(`w-144 flex flex-shrink-0 laptop:hidden h-16`, show?'':'overflow-hidden')}>
       {
         tabData.data.map((el)=>(
           el.attributes.info?(
               <li className="flex m-0 justify-center items-center p-0 cursor-pointer relative h-16 desktop:hidden">
-                <Link href={el.attributes.href} key={el.id} className=' inline-block h-16 my-0 mx-3 leading-lineheight text-sm before:absolute text-slate-500 before:inset-0 '>
+                <Link href={el.attributes.href} key={el.id} className=' inline-block h-16 my-0 mx-3 leading-lineheight text-sm before:absolute text-slate-500 before:inset-0 hover:border-b-blue-500 hover:text-slate-500 focus:text-blue-500 cursor-pointer'>
                   {el.attributes.name}
                 </Link>
-                <span id="active_text" className="absolute inline-block  top-2 left-3 z-10 whitespace-nowrap px-2 py-0.5 text-white   bg-red-500  rounded-xl leading-4 text-center font-medium">
+                {infoData?(""):(<span id="active_text" className={clsx(`absolute inline-block  top-2 left-3 z-10 whitespace-nowrap px-2 py-0.5 text-white  bg-red-500  rounded-xl leading-4 text-center font-medium`)}>
                   {el.attributes.info}
-                </span>
+                </span>)}
               </li>
                  
           ):(

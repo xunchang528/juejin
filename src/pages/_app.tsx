@@ -5,7 +5,6 @@ import Head from "next/head";
 import axios from "axios";
 import { ThemeContextProvider } from "../store/themes";
 import Header from "../components/Header";
-import ContentNav from "../components/Page_nav";
 
 import "../styles/globals.css";
 //globals太多了，所以我把它们放在一起中间两个可以去掉
