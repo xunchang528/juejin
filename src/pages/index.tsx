@@ -18,95 +18,92 @@ import Authors from "../components/Authors";
 import Articles from "../components/Articles";
 import ContentNav from "../components/Page_nav";
 
-
 export interface IProps {
-  title: string;
-  description: string;
-  authorName: string;
-  date: string;
-  tag: string;
+  title: String;
+  description: String;
+  authorName: String;
+  date: String;
+  tag: String;
   tabData: object;
   contentTabData: object;
   adData: String;
   authorData: String;
   articleData: String;
+  entryData: String;
 }
 
 const Home: NextPage<IProps> = ({
-  title,
-  description,
-  authorName,
-  date,
-  tag,
-  tabData,
+  // title,
+  // description,
+  // authorName,
+  // date,
+  // tag,
+  // tabData,
   contentTabData,
   adData,
   authorData,
-  articleData
+  articleData,
+  // entryData
 }) => {
-  const items = [1, 2, 3, 4, 5];
-  var result = [];
-  for (var i = 0; i < items.length; i++) {
-    result.push(
-      <div className={styles.entry_list_list}>
-        <li className={styles.item}>
-          {/* 文章入口 */}
-          <div className={styles.entry}>
-            <div className={styles.meta_container}>
-              <Link className={styles.user_message} href={`url`}>
-                <div className={styles.popover_box}>{authorName}</div>
-              </Link>
-              <div className={styles.date}>{date}</div>
-              <div className={styles.tag_list}>
-                <Link className={styles.tag} href={``}>
-                  {tag}
-                </Link>
-              </div>
-            </div>
-            <div className={styles.content_wrapper}>
-              <div className={styles.content_main}>
-                <div className={styles.title_row}>
-                  <Link
-                    className={styles.title}
-                    href={`${LOCALDOMAIN}/article/1`}
-                  >
-                    title
-                  </Link>
-                </div>
-                <div className={styles.abstract}>
-                  <Link href={`${LOCALDOMAIN}/article/1`}>
-                    <div className={styles.abstracts}>{description}</div>
-                  </Link>
-                </div>
-                <ul className={styles.action_list}>
-                  <li className={styles.item_view}>
-                    <i className={styles.view}></i>
-                    <span>1</span>
-                  </li>
-                  <li className={styles.item_like}>
-                    <i className={styles.like}></i>
-                    <span>2</span>
-                  </li>
-                  <li className={styles.item_comment}>
-                    <i className={styles.comment}></i>
-                    <span>3</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </li>
-      </div>
-    );
-  }
-
- 
+  // const items = [1, 2, 3, 4, 5];
+  // var result = [];
+  // for (var i = 0; i < items.length; i++) {
+  //   result.push(
+  //     <div className={styles.entry_list_list}>
+  //       <li className={styles.item}>
+  //         {/* 文章入口 */}
+  //         <div className={styles.entry}>
+  //           <div className={styles.meta_container}>
+  //             <Link className={styles.user_message} href={`url`}>
+  //               <div className={styles.popover_box}>{authorName}</div>
+  //             </Link>
+  //             <div className={styles.date}>{date}</div>
+  //             <div className={styles.tag_list}>
+  //               <Link className={styles.tag} href={``}>
+  //                 {tag}
+  //               </Link>
+  //             </div>
+  //           </div>
+  //           <div className={styles.content_wrapper}>
+  //             <div className={styles.content_main}>
+  //               <div className={styles.title_row}>
+  //                 <Link
+  //                   className={styles.title}
+  //                   href={`${LOCALDOMAIN}/article/1`}
+  //                 >
+  //                   title
+  //                 </Link>
+  //               </div>
+  //               <div className={styles.abstract}>
+  //                 <Link href={`${LOCALDOMAIN}/article/1`}>
+  //                   <div className={styles.abstracts}>{description}</div>
+  //                 </Link>
+  //               </div>
+  //               <ul className={styles.action_list}>
+  //                 <li className={styles.item_view}>
+  //                   <i className={styles.view}></i>
+  //                   <span>1</span>
+  //                 </li>
+  //                 <li className={styles.item_like}>
+  //                   <i className={styles.like}></i>
+  //                   <span>2</span>
+  //                 </li>
+  //                 <li className={styles.item_comment}>
+  //                   <i className={styles.comment}></i>
+  //                   <span>3</span>
+  //                 </li>
+  //               </ul>
+  //             </div>
+  //           </div>
+  //         </div>
+  //       </li>
+  //     </div>
+  //   );
+  // }
 
   return (
     <>
   <ContentNav contentTabData={contentTabData} />
-
-    
       <div className={styles.container}>
         <div className={styles.content}>
           <div className={styles.entry_list}>
@@ -121,7 +118,7 @@ const Home: NextPage<IProps> = ({
                   <div className={styles.dorp_down_area}></div>
                 </nav>
               </header>
-              {result}
+              
               {/* 文章列表 */}
               <Articles articleData={articleData}/>
             </div>
@@ -136,6 +133,7 @@ const Home: NextPage<IProps> = ({
               <Ads adData={adData}/>
               {/* 作者榜 */}
               <Authors authorData={authorData}/>
+              {/* <Entrys entryData={entryData} /> */}
             </div>
           </aside>
         </div>
@@ -170,6 +168,8 @@ export async function getServerSideProps() {
   const articleResponse = await fetch(`${process.env.DB_PATH}/articles?populate=*`)
   const articleData = await articleResponse.json();
 
+  const pageDataResponse = await fetch(`${process.env.DB_PATH}/articles?populate=*`)
+  const pageData = await pageDataResponse.json();
   return {
     props: {
       // index页面传出数据
@@ -177,7 +177,8 @@ export async function getServerSideProps() {
       contentTabData: contentNavData,
       adData,
       authorData,
-      articleData
+      articleData,
+      pageData
     },
   };
 }
