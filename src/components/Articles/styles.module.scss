@@ -2,14 +2,13 @@
   .entry {
     cursor: pointer;
     position: relative;
-    background: #fff;
+    background: var( --secondary-color);
     padding: 12px 20px 0;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
 
     .meta_container {
-      color: #091421;
       display: flex;
       align-items: center;
 
@@ -20,7 +19,7 @@
         max-width: 162px;
         font-size: 13px;
         line-height: 22px;
-        color: #4e5969;
+        color: var(--primary-background-color);
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -34,7 +33,7 @@
 
       .date {
         position: relative;
-        color: #4e5969;
+        color: var(--primary-background-color);
         padding: 0 10px;
         line-height: 22px;
         font-size: 13px;
@@ -51,7 +50,7 @@
           font-size: 13px;
           line-height: 22px;
           padding: 0 8px;
-          color: #86909c;
+          color: var(--primary-background-color);
         }
       }
     }
@@ -74,7 +73,7 @@
             font-weight: 700;
             font-size: 16px;
             line-height: 24px;
-            color: #1d2129;
+            color: var(--primary-background-color);
             width: 100%;
             display: -webkit-box;
             overflow: hidden;
@@ -88,7 +87,7 @@
           margin-bottom: 10px;
 
           .abstracts {
-            color: #3f4c5b;
+            color: var(--primary-background-color);
             font-size: 13px;
             line-height: 22px;
             display: -webkit-box;
@@ -108,7 +107,7 @@
             margin-right: 20px;
             font-size: 13px;
             line-height: 20px;
-            color: #4e5969;
+            color: var(--primary-background-color);
             flex-shrink: 0;
             display: flex;
             align-items: center;
@@ -128,7 +127,7 @@
             margin-right: 20px;
             font-size: 13px;
             line-height: 20px;
-            color: #4e5969;
+            color: var(--primary-background-color);
             flex-shrink: 0;
             display: flex;
             align-items: center;
@@ -147,7 +146,7 @@
             margin-right: 20px;
             font-size: 13px;
             line-height: 20px;
-            color: #4e5969;
+            color: var(--primary-background-color);
             flex-shrink: 0;
             display: flex;
             align-items: center;

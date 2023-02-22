@@ -18,7 +18,7 @@ function Articles({articleData}) {
                     {/* 文章入口 */}
                     <div className={styles.entry}>
                         <div className={styles.meta_container}>
-                            <Link className={styles.user_message} href={`url`}>
+                            <Link className={styles.user_message} href={`${CMS_URL}/article/{id}`}>
                                 <div className={styles.popover_box}>{article.attributes.authorName}</div>
                             </Link>
                         <div className={styles.date}>{article.attributes.publishedAt}</div>
@@ -26,12 +26,12 @@ function Articles({articleData}) {
                         <div className={styles.content_wrapper}>
                             <div className={styles.content_main}>
                                 <div className={styles.title_row}>
-                                    <Link className={styles.title} href={`${LOCAL_URL}/article/1`}>
+                                    <Link className={styles.title} href={`${CMS_URL}/article/{id}`}>
                                         {article.attributes.title}
                                     </Link>
                                 </div>
                                 <div className={styles.abstract}>
-                                    <Link href={`${LOCAL_URL}/article/1`}>
+                                    <Link href={`${CMS_URL}/article/{id}`}>
                                         <div className={styles.abstracts}>Description</div> {/* 直接hardcode了,正常应该取文章中一段 */}
                                     </Link>
                                 </div>

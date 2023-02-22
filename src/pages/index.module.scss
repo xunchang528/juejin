@@ -1,5 +1,6 @@
 @import "./media.scss";
 
+
 @mixin initStatus {
   transform: translate3d(0, 2.5rem, 0);
   opacity: 0;
@@ -29,7 +30,7 @@
     width: 700px;
 
     .entry_list_container {
-      background-color: #fff;
+      background-color: var( --secondary-color);
 
       .list_header {
         display: flex;
@@ -60,198 +61,38 @@
 
       .entry_list_list {
         width: 100%;
-        background-color: #fff;
+        background-color: var( --secondary-colorr);
         position: relative;
 
         .item {
           transition: all 0.3s ease-in;
-
-          .entry {
-            cursor: pointer;
-            position: relative;
-            background: #fff;
-            padding: 12px 20px 0;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-
-            .meta_container {
-              color: #091421;
-              display: flex;
-              align-items: center;
-
-              .user_message {
-                display: flex;
-                align-items: center;
-                margin-right: 8px;
-                max-width: 162px;
-                font-size: 13px;
-                line-height: 22px;
-                color: #4e5969;
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                word-break: break-all;
-
-                .popover_box {
-                  display: flex;
-                  align-items: center;
-                }
-              }
-
-              .date {
-                position: relative;
-                color: #4e5969;
-                padding: 0 10px;
-                line-height: 22px;
-                font-size: 13px;
-                flex-shrink: 0;
-              }
-
-              .tag_list {
-                display: flex;
-                align-items: center;
-
-                .tag {
-                  position: relative;
-                  flex-shrink: 0;
-                  font-size: 13px;
-                  line-height: 22px;
-                  padding: 0 8px;
-                  color: #86909c;
-                }
-              }
-            }
-
-            .content_wrapper {
-              display: flex;
-              padding-bottom: 12px;
-              border-bottom: 1px solid #e5e6eb;
-              margin-top: 10px;
-              width: 100%;
-
-              .content_main {
-                flex: 1 1 auto;
-
-                .title_row {
-                  display: flex;
-                  margin-bottom: 8px;
-
-                  .title {
-                    font-weight: 700;
-                    font-size: 16px;
-                    line-height: 24px;
-                    color: #1d2129;
-                    width: 100%;
-                    display: -webkit-box;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
-                    -webkit-box-orient: vertical;
-                    -webkit-line-clamp: 1;
-                  }
-                }
-
-                .abstract {
-                  margin-bottom: 10px;
-
-                  .abstracts {
-                    color: #3f4c5b;
-                    font-size: 13px;
-                    line-height: 22px;
-                    display: -webkit-box;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
-                    -webkit-box-orient: vertical;
-                    -webkit-line-clamp: 1;
-                  }
-                }
-
-                .action_list {
-                  display: flex;
-                  align-items: center;
-                  padding-left: 0;
-                  .item_view {
-                    position: relative;
-                    margin-right: 20px;
-                    font-size: 13px;
-                    line-height: 20px;
-                    color: #4e5969;
-                    flex-shrink: 0;
-                    display: flex;
-                    align-items: center;
-                    .view {
-                      background-image: url(../../public/view.png);
-                      display: block;
-                      width: 16px;
-                      height: 16px;
-                      background-size: 100%;
-                    }
-                    span {
-                      margin-left: 4px;
-                    }
-                  }
-                  .item_like {
-                    position: relative;
-                    margin-right: 20px;
-                    font-size: 13px;
-                    line-height: 20px;
-                    color: #4e5969;
-                    flex-shrink: 0;
-                    display: flex;
-                    align-items: center;
-
-                    .like {
-                      background-image: url(../../public/like.png);
-                      display: block;
-                      width: 16px;
-                      height: 16px;
-                      background-size: 100%;
-                    }
-                  }
-
-                  .item_comment {
-                    position: relative;
-                    margin-right: 20px;
-                    font-size: 13px;
-                    line-height: 20px;
-                    color: #4e5969;
-                    flex-shrink: 0;
-                    display: flex;
-                    align-items: center;
-
-                    .comment {
-                      background-image: url(../../public/comment.png);
-                      display: block;
-                      width: 16px;
-                      height: 16px;
-                      background-size: 100%;
-                    }
-                  }
-                }
-              }
-            }
-          }
         }
       }
     }
   }
 
   .aside {
-    background-color: rgba(160, 139, 160, 0.607);
     position: absolute;
     top: 0;
     right: 0;
     width: 240px;
-    .sidebar_block {
-      color: #3f4c5b;
-      overflow: hidden;
-      height: 200px;
+    background: var(--secondary-color);
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 5%);
+    border-radius: 2px;
 
-      .banner {
-        height: 200px;
-        color: #86909c;
-      }
-    }
+    line-height: 1.29;
+    color: var(--primary-background-color);
+    padding: 1rem 1.3rem;
+    border-bottom: 1px solid hsla(0,0%,59.2%,.1);
+    
+  }
+  .theme_icon{
+    width: 1.25rem;
+    height: 1.25rem;
+    background-image: var(--theme-icon);
+    background-size: 1.25rem 1.25rem;
+    background-repeat: no-repeat;
+    cursor: pointer;
   }
 }
 

@@ -2,11 +2,12 @@ import type { AppProps, AppContext } from "next/app";
 import React, { useEffect } from "react";
 import App from "next/app";
 import Head from "next/head";
-import axios from "axios";
 import { ThemeContextProvider } from "../store/themes";
 import Header from "../components/Header";
 
 import "../styles/globals.css";
+// import "./global.scss";
+
 //globals太多了，所以我把它们放在一起中间两个可以去掉
 
 export interface IComponentProps {

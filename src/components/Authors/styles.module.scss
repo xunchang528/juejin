@@ -1,0 +1,23 @@
+.author {
+  padding: 1rem 1.3rem;
+  border-bottom: 1px solid hsla(0,0%,59.2%,.1);
+  line-height: 1.29;
+  color: var(--primary-background-color);
+}
+
+.item {
+  padding: 1rem 1.3rem;
+  display: flex;
+  align-items: center;
+  color: var(--primary-background-color);
+  cursor: pointer;
+  .avatar {
+    flex: 0 0 auto;
+    width: 3.8rem;
+    height: 3.8rem;
+    border-radius: 50%;
+    margin-right: 0.5rem;
+    
+  }
+}
+

@@ -1,22 +1,12 @@
-import React, {
-  useContext,
-  useEffect,
-  useReducer,
-  useRef,
-  useState,
-} from "react";
-import type { GetServerSideProps, GetStaticProps, NextPage } from "next";
+import type {  NextPage } from "next";
 import styles from "./index.module.scss";
-import axios from "axios";
-import { LOCALDOMAIN } from "../utils";
-import { IArticleIntro } from "./api/articleIntro";
-import App from "next/app";
-import Link from "next/link";
-import { useRouter } from "next/router";
 import Ads from "../components/Ads";
 import Authors from "../components/Authors";
 import Articles from "../components/Articles";
 import ContentNav from "../components/Page_nav";
+import { Themes } from "../constants/enum";
+import { ThemeContext } from "../store/themes";
+import { FC, useContext } from "react";
 
 export interface IProps {
   title: String;
@@ -33,74 +23,12 @@ export interface IProps {
 }
 
 const Home: NextPage<IProps> = ({
-  // title,
-  // description,
-  // authorName,
-  // date,
-  // tag,
-  // tabData,
   contentTabData,
   adData,
   authorData,
   articleData,
-  // entryData
 }) => {
-  // const items = [1, 2, 3, 4, 5];
-  // var result = [];
-  // for (var i = 0; i < items.length; i++) {
-  //   result.push(
-  //     <div className={styles.entry_list_list}>
-  //       <li className={styles.item}>
-  //         {/* 文章入口 */}
-  //         <div className={styles.entry}>
-  //           <div className={styles.meta_container}>
-  //             <Link className={styles.user_message} href={`url`}>
-  //               <div className={styles.popover_box}>{authorName}</div>
-  //             </Link>
-  //             <div className={styles.date}>{date}</div>
-  //             <div className={styles.tag_list}>
-  //               <Link className={styles.tag} href={``}>
-  //                 {tag}
-  //               </Link>
-  //             </div>
-  //           </div>
-  //           <div className={styles.content_wrapper}>
-  //             <div className={styles.content_main}>
-  //               <div className={styles.title_row}>
-  //                 <Link
-  //                   className={styles.title}
-  //                   href={`${LOCALDOMAIN}/article/1`}
-  //                 >
-  //                   title
-  //                 </Link>
-  //               </div>
-  //               <div className={styles.abstract}>
-  //                 <Link href={`${LOCALDOMAIN}/article/1`}>
-  //                   <div className={styles.abstracts}>{description}</div>
-  //                 </Link>
-  //               </div>
-  //               <ul className={styles.action_list}>
-  //                 <li className={styles.item_view}>
-  //                   <i className={styles.view}></i>
-  //                   <span>1</span>
-  //                 </li>
-  //                 <li className={styles.item_like}>
-  //                   <i className={styles.like}></i>
-  //                   <span>2</span>
-  //                 </li>
-  //                 <li className={styles.item_comment}>
-  //                   <i className={styles.comment}></i>
-  //                   <span>3</span>
-  //                 </li>
-  //               </ul>
-  //             </div>
-  //           </div>
-  //         </div>
-  //       </li>
-  //     </div>
-  //   );
-  // }
-
+  const { setTheme } = useContext(ThemeContext);
   return (
     <>
   <ContentNav contentTabData={contentTabData} />
@@ -115,7 +43,6 @@ const Home: NextPage<IProps> = ({
                     <li className={styles.nav_item}>最新</li>
                     <li className={styles.nav_item}>热榜</li>
                   </ul>
-                  <div className={styles.dorp_down_area}></div>
                 </nav>
               </header>
               
@@ -125,17 +52,22 @@ const Home: NextPage<IProps> = ({
           </div>
           {/* 主页侧边广告栏 */}
           <aside className={styles.aside}>
-            <div className={styles.sidebar_block}>
-              <div className={styles.banner}>ad</div>
-            </div>
             <div>
               {/* 广告位 */}
               <Ads adData={adData}/>
               {/* 作者榜 */}
               <Authors authorData={authorData}/>
-              {/* <Entrys entryData={entryData} /> */}
             </div>
           </aside>
+          <div className={styles.theme_icon}
+        onClick={(): void => {
+          if (localStorage.getItem("theme") === Themes.light) {
+            setTheme(Themes.dark);
+          } else {
+            setTheme(Themes.light);
+          }
+        }}>
+          </div>
         </div>
       </div>
     </>
