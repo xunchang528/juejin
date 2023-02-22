@@ -38,7 +38,8 @@ module.exports = {
       },
       backgroundColor:{
         '#abcdff':'#abcdff',
-        'rgba(30,128,255,.05)':'rgba(30,128,255,.05)'
+        'rgba(30,128,255,.05)':'rgba(30,128,255,.05)',
+        'text-white':'var(--font-color)'
       },
       borderColor:{
         'bcButton':'rgba(30,128,255,.3)'

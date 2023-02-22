@@ -6,7 +6,7 @@ html[data-theme="dark"] {
   --primary-background-color: rgba(14, 14, 14, 1); // 主要的背景色
   --footer-background-color: rgba(36, 36, 36, 1); // footer组件的背景色
   --navbar-background-color: rgba(0, 0, 0, 0.5); // navbar组件的背景色
-  --secondary-color: rgba(255, 255, 255, 0.5); // 次一级，色值没那么显眼的字体颜色
+  --secondary-color: #121212; // 次一级，色值没那么显眼的字体颜色
   --content-background-color: #272727
   --link-color: #34a8eb; // 链接 hover 上去的颜色
   --theme-icon:url("../../public/theme_dark.png");
@@ -33,7 +33,7 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
     Helvetica Neue, sans-serif;
   color: var(--juejin-font-1);
-  background-color: var(--juejin-background);
+  background-color: var(--primary-color);
   overflow: hidden;
   list-style: none;
 }

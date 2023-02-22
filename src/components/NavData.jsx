@@ -24,8 +24,7 @@ const NavData=({tabData})=> {
       setIsOver(true)
     }
     
-  
-   
+
   }, [isOver])
 
   

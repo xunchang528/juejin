@@ -1,10 +1,7 @@
 /* //定义主题色 */
-/* // @import "~@douyinfe/semi-ui/dist/css/semi.min.css"; */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-/* 这三个是必要的，不然tailwindcss样式渲染不上 */
-
 
 
 :root {
@@ -17,7 +14,7 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
-
+  --primary-color: #ffffff;
   --primary-glow: conic-gradient(
     from 180deg at 50% 50%,
     #16abff33 0deg,
@@ -49,39 +46,6 @@
   --card-border-rgb: 131, 134, 135;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-
-    --primary-glow: radial-gradient(rgba(1, 65, 255, 0.4), rgba(1, 65, 255, 0));
-    --secondary-glow: linear-gradient(
-      to bottom right,
-      rgba(1, 65, 255, 0),
-      rgba(1, 65, 255, 0),
-      rgba(1, 65, 255, 0.3)
-    );
-
-    --tile-start-rgb: 2, 13, 46;
-    --tile-end-rgb: 2, 5, 19;
-    --tile-border: conic-gradient(
-      #ffffff80,
-      #ffffff40,
-      #ffffff30,
-      #ffffff20,
-      #ffffff10,
-      #ffffff10,
-      #ffffff80
-    );
-
-    --callout-rgb: 20, 20, 20;
-    --callout-border-rgb: 108, 108, 108;
-    --card-rgb: 100, 100, 100;
-    --card-border-rgb: 200, 200, 200;
-  }
-}
-
 * {
   box-sizing: border-box;
   padding: 0;
@@ -97,7 +61,6 @@ body {
 }
 
 body {
-
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
       to bottom,
@@ -138,7 +101,7 @@ html[data-theme="light"] {
   --primary-background-color: rgba(255, 255, 255, 1);
   --footer-background-color: #f4f5f5;
   --navbar-background-color: rgba(255, 255, 255, 0.5);
-  --secondary-color: #666666;
+  --secondary-color: #272727;
   --link-color: #0070f3;
   --theme-icon:url("../../public/theme_light.png");
   --font-color: black;
@@ -151,13 +114,12 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-  color: var(--juejin-font-1);
-  background-color: var(--juejin-background);
+  color: var(--primary-background-color);
+  background: var(--font-color);
   overflow: initial;
   list-style: none;
-
-  
 }
+
 
 a {
   color: inherit;

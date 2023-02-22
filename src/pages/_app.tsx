@@ -6,7 +6,6 @@ import { ThemeContextProvider } from "../store/themes";
 import Header from "../components/Header";
 
 import "../styles/globals.css";
-// import "./global.scss";
 
 //globals太多了，所以我把它们放在一起中间两个可以去掉
 
