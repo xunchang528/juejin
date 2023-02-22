@@ -12,7 +12,7 @@ const getAdData = (
 ): void => {
   axios.get(`${CMSDOMAIN}/api/ads?populate=*`).then((result) => {
     const data = result.data.data || {};
-    console.log(data)
+    // console.log(data)
     res.status(200).json(data);
   });
 };

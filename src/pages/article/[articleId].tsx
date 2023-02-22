@@ -232,7 +232,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     // header数据
     const navResponse = await fetch(`${process.env.DB_PATH}/tabs`);
   const navData = await navResponse.json();
-  console.log(navData);
+  // console.log(navData);
 
   //bigtag数据
   const contentNavResponse = await fetch(`${process.env.DB_PATH}/big-tags`);

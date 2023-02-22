@@ -18,7 +18,7 @@ function ContentNav({contentTabData}) {
     useEffect(()=>{
     const scroll = ()=>{
       const {scrollY}=window
-    console.log('scrollY',scrollY)
+    // console.log('scrollY',scrollY)
     if(scrollY >= "180"){
       // console.log('first')
       setTopNav('top-0')

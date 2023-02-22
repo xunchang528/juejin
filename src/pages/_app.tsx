@@ -17,7 +17,7 @@ export interface IComponentProps {
 const MyApp = (data: AppProps & IComponentProps): JSX.Element => {
   const { Component, pageProps, isMobile, isSupportWebp } = data;
 
-  console.log(pageProps);
+  // console.log(pageProps);
 
   return (
     <div>
@@ -29,7 +29,7 @@ const MyApp = (data: AppProps & IComponentProps): JSX.Element => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div >
-        <Header tabData={pageProps.tabData} />     
+        <Header className={``} tabData={pageProps.tabData} />     
 
       <ThemeContextProvider>    
 

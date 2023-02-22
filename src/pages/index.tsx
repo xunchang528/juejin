@@ -42,6 +42,15 @@ const Home: NextPage<IProps> = ({
                     <li className={styles.nav_item}>推荐</li>
                     <li className={styles.nav_item}>最新</li>
                     <li className={styles.nav_item}>热榜</li>
+                    <div className={styles.theme_icon}
+        onClick={(): void => {
+          if (localStorage.getItem("theme") === Themes.light) {
+            setTheme(Themes.dark);
+          } else {
+            setTheme(Themes.light);
+          }
+        }}>
+          </div>
                   </ul>
                 </nav>
               </header>
@@ -59,15 +68,7 @@ const Home: NextPage<IProps> = ({
               <Authors authorData={authorData}/>
             </div>
           </aside>
-          <div className={styles.theme_icon}
-        onClick={(): void => {
-          if (localStorage.getItem("theme") === Themes.light) {
-            setTheme(Themes.dark);
-          } else {
-            setTheme(Themes.light);
-          }
-        }}>
-          </div>
+          
         </div>
       </div>
     </>
@@ -82,7 +83,7 @@ export async function getServerSideProps() {
   //Tab数据
   const navResponse = await fetch(`${process.env.DB_PATH}/tabs`);
   const navData = await navResponse.json();
-  console.log(navData);
+  // console.log(navData);
 
   //bigtag数据
   const contentNavResponse = await fetch(`${process.env.DB_PATH}/big-tags`);
