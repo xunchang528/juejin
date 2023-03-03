@@ -407,6 +407,7 @@ function DeleteActiveIcon(props) {
 
 // 小屏显示下拉菜单
 export function MobileDrop({tabData,className}){
+  console.log(tabData)
 return(
     <div className=" w-4 text-right ">
       <Menu as='div' className="relative inline-block text-left transition-transitionProperty-width">

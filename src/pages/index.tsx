@@ -23,6 +23,7 @@ export interface IProps {
 }
 
 const Home: NextPage<IProps> = ({
+  tabData,
   contentTabData,
   adData,
   authorData,
@@ -31,6 +32,7 @@ const Home: NextPage<IProps> = ({
   const { setTheme } = useContext(ThemeContext);
   return (
     <>
+
   <ContentNav contentTabData={contentTabData} />
       <div className={styles.container}>
         <div className={styles.content}>
@@ -78,7 +80,7 @@ const Home: NextPage<IProps> = ({
 export default Home;
 
 // nav栏数据
-export async function getServerSideProps() {
+export async function getStaticProps() {
   // 抓取数据
   //Tab数据
   const navResponse = await fetch(`${process.env.DB_PATH}/tabs`);

@@ -4,7 +4,7 @@ import ContentNav from "../../components/Page_nav";
 function Active(props){
   return(
     <>
-    <ContentNav contentTabData={props.contentTabData}/>
+    <ContentNav contentTabData={contentTabData}/>
     <main>
       
 

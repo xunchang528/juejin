@@ -21,7 +21,6 @@ function Header({className,tabData}){
     useEffect(()=>{
     const scroll = ()=>{
       const {scrollY}=window
-    // console.log('scrollY',scrollY)
     
       if(scrollY >= "180"){
       // console.log('first')
@@ -36,6 +35,7 @@ function Header({className,tabData}){
     window.addEventListener('scroll',scroll,{passove:true})
     // return window.removeEventListener('scroll',scroll,{passove:true})
   },[topNav])
+  console.log(tabData)
   
 
   return(

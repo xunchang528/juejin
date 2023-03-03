@@ -29,7 +29,7 @@ const MyApp = (data: AppProps & IComponentProps): JSX.Element => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div >
-        <Header className={``} tabData={pageProps.tabData} />     
+        <Header tabData={pageProps.tabData} />     
 
       <ThemeContextProvider>    
 

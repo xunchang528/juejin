@@ -1,7 +1,7 @@
 import { AppContext } from "next/app";
 
 //照着字节的demo加的文件
-export const LOCALDOMAIN = "http://127.0.0.1:3000";
+export const LOCALDOMAIN = "http://localhost:3000";
 export const CMSDOMAIN = "http://127.0.0.1:1337";
 
 //应该是适配小屏幕的函数
